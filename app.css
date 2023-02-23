@@ -30,6 +30,7 @@ img {
 }
 
 #game_background {
+  src: local(tree background.jpg);
 }
 
 #game_elements {
