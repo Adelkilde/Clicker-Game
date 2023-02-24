@@ -20,6 +20,10 @@ img {
   left: 0%;
 }
 
+#game_background {
+  grid-area: 1 /1;
+}
+
 #start {
 }
 
@@ -29,10 +33,10 @@ img {
 #level_complete {
 }
 
-#game_background {
-}
-
 #game_elements {
+  grid-area: 1 /1;
+  overflow: hidden;
+  position: relative;
 }
 
 #game_foreground {
