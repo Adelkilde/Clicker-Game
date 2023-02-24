@@ -7,30 +7,21 @@ img {
 }
 
 #screen {
-  position: relative;
+  aspect-ratio: 16 / 9;
+
+  display: grid;
+  grid-template: 100% / 100%;
   width: 100%;
-  aspect-ratio: 16/9;
 }
 
 #game {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0%;
-  left: 0%;
+  grid-area: 1 /1;
+  display: grid;
+  grid-template: 100% / 100%;
 }
 
 #game_background {
   grid-area: 1 /1;
-}
-
-#start {
-}
-
-#game_over {
-}
-
-#level_complete {
 }
 
 #game_elements {
@@ -39,8 +30,49 @@ img {
   position: relative;
 }
 
-#game_foreground {
+.hidden,
+#game_over.hidden,
+#level_complete.hidden {
+  display: none;
 }
 
-#game_ui {
+/* Position elements */
+
+#gamergunk_container {
+  position: absolute;
+
+  top: 0;
+  left: 10vw;
 }
+
+#gamergunk_sprite {
+  width: 100%;
+}
+
+#hairyballs_container {
+}
+
+#hairyballs_sprite {
+  width: 100%;
+}
+
+#stinkypants_container {
+}
+
+#stinkypants_sprite {
+  width: 100%;
+}
+
+#chadsoap_container {
+  position: absolute;
+  top: 0;
+  left: 30vw;
+}
+
+#chadsoap_sprite {
+  width: 100%;
+}
+
+/* UI */
+
+/* Animations */
