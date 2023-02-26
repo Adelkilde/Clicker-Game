@@ -14,4 +14,7 @@ function start() {
     document.querySelector("#stinkypants_container").classList.add("falling");
     document.querySelector("#hairyballs_container").classList.add("falling");
     document.querySelector("#chadsoap_container").classList.add("falling");
+
+    document.querySelector("#gamergunk_container").addEventListener("click", clickCoin);
+  document.querySelector("#chadsoap_container").addEventListener("click", clickBomb);
 }

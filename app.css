@@ -10,8 +10,8 @@ img {
   aspect-ratio: 16 / 9;
 
   display: grid;
-  grid-template: 100% / 100%;
-  width: 100%;
+  grid-template: 50%;
+  width: 70%;
 }
 
 #game {
@@ -32,7 +32,7 @@ img {
 
 .hidden,
 #game_over.hidden,
-#level_complete.hidden {
+#game_won.hidden {
   display: none;
 }
 
@@ -42,7 +42,7 @@ img {
   position: absolute;
 
   top: 0;
-  left: 10vw;
+  left: 0%;
 }
 
 #gamergunk_sprite {
@@ -50,6 +50,10 @@ img {
 }
 
 #hairyballs_container {
+  position: absolute;
+
+  top: 0vw;
+  left: 20%;
 }
 
 #hairyballs_sprite {
@@ -57,6 +61,10 @@ img {
 }
 
 #stinkypants_container {
+  position: absolute;
+
+  top: 0;
+  left: 40%;
 }
 
 #stinkypants_sprite {
@@ -66,7 +74,7 @@ img {
 #chadsoap_container {
   position: absolute;
   top: 0;
-  left: 30vw;
+  left: 30%;
 }
 
 #chadsoap_sprite {
@@ -74,5 +82,50 @@ img {
 }
 
 /* UI */
+
+#game_ui {
+  position: absolute;
+  top: 2vw;
+  right: 1vw;
+  color: white;
+
+  font-size: 2em;
+  font-family: sans-serif;
+
+  pointer-events: none;
+}
+
+#score_board {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.1em;
+}
+
+#gamergunk_count {
+  white-space: nowrap;
+  text-align: right;
+}
+
+#gamergunk_image {
+  width: 1em;
+}
+
+#life_board {
+  margin-block-start: 0.2em;
+  display: grid;
+  grid-template-columns: 1.2em 1.2em 1.2em;
+}
+
+#life_board img {
+  width: 100%;
+}
+
+.active_heart {
+  filter: drop-shadow(0 0 2px yellow);
+}
+
+.broken_heart {
+  filter: grayscale(75%) blur(0.5px);
+}
 
 /* Animations */
