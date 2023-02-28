@@ -22,7 +22,7 @@ img {
 
 #game_background {
   grid-area: 1 /1;
-  background-image: url(images/farm_scene.jpg);
+  background-image: url(images/3586100_884.jpg);
   background-size: cover;
 }
 
@@ -30,6 +30,12 @@ img {
   grid-area: 1 /1;
   overflow: hidden;
   position: relative;
+}
+
+#game_over {
+}
+
+#game_won {
 }
 
 .hidden,
@@ -47,7 +53,7 @@ img {
 }
 
 #gamergunk1_sprite {
-  width: 0%;
+  width: 100%;
 }
 
 #gamergunk2_container {
@@ -57,7 +63,7 @@ img {
 }
 
 #gamergunk2_sprite {
-  width: 0%;
+  width: 100%;
 }
 
 #gamergunk3_container {
@@ -67,7 +73,7 @@ img {
 }
 
 #gamergunk3_sprite {
-  width: 0%;
+  width: 100%;
 }
 
 #hairyballs_container {
@@ -146,11 +152,11 @@ img {
 #life_board {
   margin-block-start: 0.2em;
   display: grid;
-  grid-template-columns: 1.2em 1.2em 1.2em;
+  grid-template-columns: 2.8em 2.8em 2.8em;
 }
 
 #life_board img {
-  width: 100%;
+  width: 150%;
 }
 
 .active_balls {
@@ -162,7 +168,7 @@ img {
 }
 
 #redditor {
-  width: 50%;
+  width: 25%;
 }
 
 /* Animations */
