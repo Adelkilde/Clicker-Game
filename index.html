@@ -15,31 +15,19 @@
         </div>
         <div id="game_elements">
           <div id="gamergunk1_container">
-            <img
-              id="gamergunk1_sprite"
-              src="images/gamergunk.png"
-              alt="gamergunk"
-            />
+            <img id="gamergunk1_sprite" src="images/gamergunk.png" alt="gunk" />
           </div>
           <div id="gamergunk2_container">
-            <img
-              id="gamergunk2_sprite"
-              src="images/gamergunk.png"
-              alt="gamergunk"
-            />
+            <img id="gamergunk2_sprite" src="images/gamergunk.png" alt="gunk" />
           </div>
           <div id="gamergunk3_container">
-            <img
-              id="gamergunk3_sprite"
-              src="images/gamergunk.png"
-              alt="gamergunk"
-            />
+            <img id="gamergunk3_sprite" src="images/gamergunk.png" alt="gunk" />
           </div>
           <div id="stinkypants_container">
             <img
               id="stinkypants_sprite"
               src="images/stinkypants.png"
-              alt="underwear"
+              alt="pants"
             />
           </div>
           <div id="chadsoap_container">
@@ -55,12 +43,8 @@
         </div>
         <div id="game_ui">
           <div id="score_board">
-            <span id="gamergunk_count">0</span>
-            <img
-              id="gamergunk_sprite"
-              src="images/gamergunk.png"
-              alt="gamergunk"
-            />
+            <span id="gunk_count">0</span>
+            <img id="gamergunk_sprite" src="images/gamergunk.png" alt="gunk" />
           </div>
           <div id="life_board">
             <img id="balls1" src="images/hairyballs.png" alt="active_balls" />
@@ -68,7 +52,7 @@
             <img id="balls3" src="images/hairyballs.png" alt="active_balls" />
           </div>
           <div id="time_board">
-            <div id="time_board"></div>
+            <div id="time_left"></div>
           </div>
           <img
             id="redditor"
@@ -77,9 +61,16 @@
           />
         </div>
       </div>
-      <div id="game_start" class="hidden"></div>
+      <div id="start" class="hidden">
+        <img src="images/startgame.png" alt="start" />
+        <p>
+          Drink as many cans of Gamer Gunk Ultra while sniffing your underpants
+          to reach the highscore!
+          <button id="btn_start"></button>
+        </p>
+      </div>
       <div id="game_over" class="hidden"></div>
-      <div id="game_won" class="hidden"></div>
+      <div id="level_complete" class="hidden"></div>
     </div>
 
     <script src="script.js"></script>

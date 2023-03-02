@@ -6,12 +6,17 @@ img {
   width: 100%;
 }
 
+p {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 1em 0;
+}
+
 #screen {
   aspect-ratio: 16 / 9;
 
   display: grid;
   grid-template: 100% / 100%;
-  width: 100%;
 }
 
 #game {
@@ -24,6 +29,8 @@ img {
   grid-area: 1 /1;
   background-image: url(images/3586100_884.jpg);
   background-size: cover;
+  filter: grayscale(45%);
+  filter: contrast(70%);
 }
 
 #game_elements {
@@ -32,15 +39,36 @@ img {
   position: relative;
 }
 
-#game_over {
+#start {
+  background-image: url(images/3586100_884.jpg);
+  background-image: url(images/startgame.png);
 }
 
-#game_won {
+#game_over {
+  grid-area: 1 /1;
+  z-index: 999;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-image: linear-gradient(150deg, #c90303 0%, #790909 100%);
+  color: #ffffff;
+}
+
+#level_complete {
+  grid-area: 1 /1;
+  z-index: 999;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-image: linear-gradient(150deg, #20c903 0%, #09793b 100%);
+  color: #ffffff;
 }
 
 .hidden,
 #game_over.hidden,
-#game_won.hidden {
+#level_complete.hidden,
+#game.hidden,
+#start.hidden {
   display: none;
 }
 
@@ -53,7 +81,7 @@ img {
 }
 
 #gamergunk1_sprite {
-  width: 100%;
+  width: 35%;
 }
 
 #gamergunk2_container {
@@ -63,7 +91,7 @@ img {
 }
 
 #gamergunk2_sprite {
-  width: 100%;
+  width: 35%;
 }
 
 #gamergunk3_container {
@@ -73,7 +101,7 @@ img {
 }
 
 #gamergunk3_sprite {
-  width: 100%;
+  width: 35%;
 }
 
 #hairyballs_container {
@@ -83,7 +111,7 @@ img {
 }
 
 #hairyballs_sprite {
-  width: 100%;
+  width: 35%;
 }
 
 #stinkypants_container {
@@ -93,7 +121,7 @@ img {
 }
 
 #stinkypants_sprite {
-  width: 100%;
+  width: 35%;
 }
 
 #chadsoap_container {
@@ -102,30 +130,42 @@ img {
 }
 
 #chadsoap_sprite {
-  width: 100%;
+  width: 35%;
 }
 
 /* positions */
 .position1 {
-  left: 10vw;
+  left: 5vw;
 }
 .position2 {
   left: 40vw;
 }
 .position3 {
-  left: 70vw;
+  left: 67vw;
 }
 .position4 {
-  left: 30vw;
+  left: 25vw;
 }
 .position5 {
   left: 55vw;
+}
+/* Speed */
+
+.speed1 {
+  animation-duration: 4s;
+}
+.speed2 {
+  animation-duration: 6s;
+}
+
+.speed3 {
+  animation-duration: 2s;
 }
 
 /* UI */
 #game_ui {
   position: absolute;
-  top: 2vw;
+  top: 1vw;
   right: 1vw;
   color: white;
 
@@ -136,27 +176,29 @@ img {
 
 #score_board {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 4fr 1fr;
   gap: 0.1em;
+  justify-items: end;
+  align-items: center;
 }
 
-#gamergunk_count {
+#gunk_count {
   white-space: nowrap;
   text-align: right;
 }
 
-#gamergunk_image {
-  width: 50%;
+#gunk_image {
+  width: 1em;
 }
 
 #life_board {
   margin-block-start: 0.2em;
   display: grid;
-  grid-template-columns: 2.8em 2.8em 2.8em;
+  grid-template-columns: 2.5em 2.5em 2.5em;
 }
 
 #life_board img {
-  width: 150%;
+  width: 100%;
 }
 
 .active_balls {
@@ -168,7 +210,7 @@ img {
 }
 
 #redditor {
-  width: 25%;
+  width: 5em;
 }
 
 /* Animations */
@@ -229,4 +271,73 @@ img {
 
 .paused {
   animation-play-state: paused;
+}
+
+@keyframes pulse_kf {
+  0% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation-name: pulse_kf;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+button {
+}
+
+/* Timer */
+
+#time_board {
+  position: relative;
+}
+
+#time_container {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 30/6;
+  border: 2px solid black;
+  background-color: rgba(208, 204, 204, 0.383);
+  top: 1.6vh;
+  right: 0.2vw;
+}
+
+#time_sprite {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: limegreen;
+  transform-origin: right;
+}
+
+/* Timer Animations */
+
+.shrink {
+  animation-name: shrink_kf;
+  animation-duration: 15s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrink_kf {
+  0% {
+    scale: 1 1;
+    background-color: limegreen;
+  }
+  50% {
+    background-color: rgb(255, 230, 0);
+  }
+  100% {
+    scale: 0 1;
+    background-color: red;
+  }
 }
