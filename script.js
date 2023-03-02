@@ -7,7 +7,7 @@ let isGameRunning = false;
 
 function ready() {
     console.log("JavaScript ready!");
-    document.querySelector("#start").classList.remove("hidden");
+    document.querySelector("#game").classList.add("hidden");
     document.querySelector("#btn_start").addEventListener("click", start);
     // document.querySelector("#btn_restart").addEventListener("click", start); 
     // document.querySelector("#btn_go_to_start").addEventListener("click", showStartScreen);
@@ -44,6 +44,7 @@ function resetPoints() {
 
 function start() {
   isGameRunning = true;
+  document.querySelector("#game").classList.remove("hidden");
 
   resetLives()
   resetPoints()
