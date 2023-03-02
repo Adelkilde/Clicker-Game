@@ -237,9 +237,9 @@ function incrementPoints() {
   console.log("Give point");
   points++;
   console.log("Current " + points + " points");
-  if (points === 2) {
-    levelComplete();
-  }
+  // if (points === 2) {
+  //   levelComplete();
+  // }
   displayPoints();
 }
 

@@ -70,61 +70,61 @@ p {
 
 #gamergunk1_container {
   position: absolute;
-
+  background-color: #09793b;
   top: 0;
+  width: 20%;
 }
 
 #gamergunk1_sprite {
-  width: 35%;
 }
 
 #gamergunk2_container {
   position: absolute;
-
+  background-color: #20c903;
   top: 0;
+  width: 20%;
 }
 
 #gamergunk2_sprite {
-  width: 35%;
 }
 
 #gamergunk3_container {
   position: absolute;
-
+  background-color: red;
   top: 0;
+  width: 20%;
 }
 
 #gamergunk3_sprite {
-  width: 35%;
 }
 
 #hairyballs_container {
   position: absolute;
-
+  background-color: aqua;
   top: 0;
+  width: 20%;
 }
 
 #hairyballs_sprite {
-  width: 35%;
 }
 
 #stinkypants_container {
   position: absolute;
 
   top: 0;
+  width: 20%;
 }
 
 #stinkypants_sprite {
-  width: 35%;
 }
 
 #chadsoap_container {
   position: absolute;
   top: 0;
+  width: 20%;
 }
 
 #chadsoap_sprite {
-  width: 35%;
 }
 
 /* positions */
