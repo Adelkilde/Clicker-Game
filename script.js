@@ -18,6 +18,7 @@ function showGameScreen() {
   document.querySelector("#start").classList.add("hidden");
   document.querySelector("#game_over").classList.add("hidden");
   document.querySelector("#level_complete").classList.add("hidden");
+  document.querySelector("#game").classList.remove("hidden");
 }
 
 
@@ -44,7 +45,7 @@ function resetPoints() {
 
 function start() {
   isGameRunning = true;
-  document.querySelector("#game").classList.remove("hidden");
+  
 
   resetLives()
   resetPoints()
@@ -53,7 +54,7 @@ function start() {
   // document.querySelector("#sound_epicgamer").play
 
   startAllAnimations();
-  // startTimer();
+  startTimer();
 
   document.querySelector("#gamergunk1_container").addEventListener("click", clickGunk);
   document.querySelector("#gamergunk2_container").addEventListener("click", clickGunk);
@@ -79,7 +80,7 @@ document.querySelector("#hairyballs_container").classList.add("falling");
 document.querySelector("#gamergunk1_container").classList.add("position1");
 document.querySelector("#gamergunk2_container").classList.add("position2");
 document.querySelector("#gamergunk3_container").classList.add("position3");
-document.querySelector("#stinkypants_container").classList.add("position4");
+document.querySelector("#stinkypants_container").classList.add("position3");
 document.querySelector("#chadsoap_container").classList.add("position4");
 document.querySelector("#hairyballs_container").classList.add("position5");
 
@@ -141,7 +142,7 @@ function clickPants() {
 
   pants.removeEventListener("click", clickPants);
   pants.classList.add("paused");
-  pants.querySelector("img").classList.add("zoom_out");
+  pants.querySelector("img").classList.add("sniff");
   pants.addEventListener("animationend", pantsGone);
 
   incrementPoints();
@@ -153,7 +154,7 @@ function pantsGone() {
   const pants = this;
 
   pants.removeEventListener("animationend", pantsGone);
-  pants.querySelector("img").classList.remove("zoom_out");
+  pants.querySelector("img").classList.remove("sniff");
   pants.classList.remove("paused");
 
   if (isGameRunning) {
@@ -182,33 +183,56 @@ function pantsRestart() {
 
 function clickSoap() {
   console.log("Click soap");
-  document.querySelector("#chadsoap_container").removeEventListener("click", clickSoap);
-  document.querySelector("#chadsoap_container").classList.add("paused");
-  document.querySelector("#chadsoap_sprite").classList.add("zoom_in");
-  document.querySelector("#chadsoap_container").addEventListener("animationend",soapGone);
+  const soap = this;
+
+  soap.removeEventListener("click", clickSoap);
+  soap.classList.add("paused");
+  soap.querySelector("img").classList.add("zoom_in");
+  soap.addEventListener("animationend", soapGone);
 
   decrementLives();
+  if (points >= 1) {
+    decrementPoints();
+  }
 }
 
 function soapGone() {
-  document.querySelector("#chadsoap_container").removeEventListener("animationend", soapGone);
-  document.querySelector("#chadsoap_sprite").classList.remove("zoom_in");
-  document.querySelector("#chadsoap_container").classList.remove("paused");
+  console.log("soap gone");
+  const soap = this;
+
+  soap.removeEventListener("animationend", soapGone);
+  soap.querySelector("img").classList.remove("zoom_in");
+  soap.classList.remove("paused");
 
   if (isGameRunning) {
-    document.querySelector("#chadsoap_container").classList.remove("falling");
-    document.querySelector("#chadsoap_container").offsetWidth;
-    document.querySelector("#chadsoap_container").classList.add("falling");
-
-    document.querySelector("#chadsoap_container").addEventListener("click", clickSoap);
+  soapRestart.call(this);
   }
+
+  soap.addEventListener("click", clickSoap);
+}
+
+function soapRestart() {
+  console.log("soap restart"); 
+  const soap = this;
+
+  soap.classList.remove("falling");
+  soap.offsetWidth;
+  soap.classList.add("falling");
+
+  soap.classList.remove("position1","position2","position3","position4","position5");
+  const p = Math.ceil(Math.random() * 5);
+  soap.classList.add(`position${p}`);
+
+  soap.classList.remove("speed1", "speed2", "speed3");
+  const s = Math.ceil(Math.random() * 3);
+  soap.classList.add(`speed${s}`);
 }
 
 function clickBalls() {
   console.log("Click balls");
   document.querySelector("#hairyballs_container").removeEventListener("click", clickBalls);
   document.querySelector("#hairyballs_container").classList.add("paused");
-  document.querySelector("#hairyballs_sprite").classList.add("zoom_out");
+  document.querySelector("#hairyballs_sprite").classList.add("glow");
   document.querySelector("#hairyballs_container").addEventListener("animationend", ballsGone);
 
   // document.querySelector("#sound_success").currentTime = 0;  
@@ -221,7 +245,7 @@ function clickBalls() {
 
 function ballsGone() {
   document.querySelector("#hairyballs_container").removeEventListener("animationend", ballsGone);
-  document.querySelector("#hairyballs_sprite").classList.remove("zoom_out");
+  document.querySelector("#hairyballs_sprite").classList.remove("glow");
 
   document.querySelector("#hairyballs_container").classList.remove("paused");
 
@@ -243,6 +267,13 @@ function incrementPoints() {
   displayPoints();
 }
 
+function decrementPoints() {
+  console.log("Lose point");
+  points--;
+  console.log("Current " + points + " points");
+  displayPoints();
+}
+
 function displayPoints() {
   console.log("Show points");
   document.querySelector("#gunk_count").textContent = points;
@@ -251,7 +282,7 @@ function displayPoints() {
 function decrementLives() {
   console.log("Lose health");
 
-  if (lives === 1) {
+  if (lives === 0) {
   gameOver();
   }
 
@@ -291,20 +322,20 @@ function levelComplete() {
   document.querySelector("#level_complete_gunk").textContent = points;
 }
 
-// function startTimer() {
-//   document.querySelector("#time_sprite").classList.add("shrink");
-//   document.querySelector("#time_sprite").addEventListener("animationend", timeIsUp);
-// }
+function startTimer() {
+  document.querySelector("#time_sprite").classList.add("shrink");
+  document.querySelector("#time_sprite").addEventListener("animationend", timeIsUp);
+}
 
-// function timeIsUp() {
-//   console.log("Time's up!");
+function timeIsUp() {
+  console.log("Time's up!");
 
-//   if (points >= 2) {
-//   levelComplete();
-//   } else {
-//   gameOver();
-//   }
-// }
+  if (points >= 20) {
+  levelComplete();
+  } else {
+  gameOver();
+  }
+}
 
 function stopGame() {
   isGameRunning = false;
