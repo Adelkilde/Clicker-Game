@@ -34,7 +34,7 @@ p {
 
 #game_background {
   grid-area: 1 /1;
-  background-image: url(images/3586100_884.jpg);
+  background-image: url(images/bingus.png);
   background-size: cover;
   filter: grayscale(50%) blur(0.3px);
 }
@@ -198,7 +198,7 @@ p {
 
 #redditor {
   width: 70%;
-  filter: drop-shadow(0 0 2px yellow);
+  filter: drop-shadow(0 0 2px hsl(60, 100%, 50%));
   padding: 0px;
   /* display: grid;
   justify-content: end; */
