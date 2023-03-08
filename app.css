@@ -7,16 +7,15 @@ img {
   width: 100%;
 }
 
+h2 {
+  font-size: 4em;
+  margin: 0;
+}
+
 p {
-  display: grid;
-  grid-template-columns: 100vw;
-  position: absolute;
-  top: -30px;
-  left: 0px;
-  font-size: 2em;
-  font-weight: bolder;
+  text-align: center;
+  font-size: 1.3em;
   margin: 1em 0;
-  filter: drop-shadow(0 0 0.75rem gold);
 }
 
 #screen {
@@ -196,17 +195,6 @@ p {
   filter: grayscale(75%) blur(0.5px);
 }
 
-#redditor {
-  width: 70%;
-  filter: drop-shadow(0 0 2px hsl(60, 100%, 50%));
-  padding: 0px;
-  /* display: grid;
-  justify-content: end; */
-  position: absolute;
-  left: 530px;
-  top: 150px;
-}
-
 /* Animations */
 
 .falling {
@@ -320,6 +308,25 @@ button:hover {
 
 button:active {
   transform: scale(0.95);
+}
+
+.pulse {
+  animation-name: pulse_kf;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+button2 {
+  padding: 0.5em 1em;
+  font-size: 2em;
+  margin: auto;
+  background-color: #ffad01;
+  color: #fff4bf;
+  border: 10px solid #ffc72e;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 /* Timer */

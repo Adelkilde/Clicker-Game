@@ -9,8 +9,8 @@ function ready() {
     console.log("JavaScript ready!");
     document.querySelector("#game").classList.add("hidden");
     document.querySelector("#btn_start").addEventListener("click", start);
-    // document.querySelector("#btn_restart").addEventListener("click", start); 
-    // document.querySelector("#btn_go_to_start").addEventListener("click", showStartScreen);
+    document.querySelector("#btn_restart").addEventListener("click", start); 
+    document.querySelector("#btn_go_to_start").addEventListener("click", showStartScreen);
   
   }
 
@@ -23,6 +23,7 @@ function showGameScreen() {
 
 
 function showStartScreen() {
+  document.querySelector("#game").classList.add("hidden")
   document.querySelector("#start").classList.remove("hidden");
   document.querySelector("#game_over").classList.add("hidden");
   document.querySelector("#level_complete").classList.add("hidden");
@@ -183,49 +184,35 @@ function pantsRestart() {
 
 function clickSoap() {
   console.log("Click soap");
-  const soap = this;
 
-  soap.removeEventListener("click", clickSoap);
-  soap.classList.add("paused");
-  soap.querySelector("img").classList.add("zoom_in");
-  soap.addEventListener("animationend", soapGone);
+  document.querySelector("#chadsoap_container").removeEventListener("click", clickSoap);
+  document.querySelector("#chadsoap_container").classList.add("paused");
+  document.querySelector("#chadsoap_sprite").classList.add("zoom_in");
+  document.querySelector("#chadsoap_container").addEventListener("animationend", soapGone);
+
+  // document.querySelector("#sound_bomb").currentTime = 0;
+  // document.querySelector("#sound_bomb").play();
 
   decrementLives();
-  if (points >= 1) {
-    decrementPoints();
-  }
 }
 
 function soapGone() {
-  console.log("soap gone");
-  const soap = this;
+  document.querySelector("#chadsoap_container").removeEventListener("animationend", soapGone);
+  document.querySelector("#chadsoap_sprite").classList.remove("zoom_in");
 
-  soap.removeEventListener("animationend", soapGone);
-  soap.querySelector("img").classList.remove("zoom_in");
-  soap.classList.remove("paused");
+  document.querySelector("#chadsoap_container").classList.remove("paused");
 
   if (isGameRunning) {
-  soapRestart.call(this);
+    document.querySelector("#chadsoap_container").classList.remove("falling");
+    document.querySelector("#chadsoap_container").offsetWidth;
+    document.querySelector("#chadsoap_container").classList.add("falling");
+
+    document.querySelector("#chadsoap_container").classList.remove("position1","position2","position3","position4","position5",);
+    let position = Math.floor(Math.random() * 5) + 1;
+    document.querySelector("#chadsoap_container").classList.add("position" + position);
+
+    document.querySelector("#chadsoap_container").addEventListener("click", clickSoap);
   }
-
-  soap.addEventListener("click", clickSoap);
-}
-
-function soapRestart() {
-  console.log("soap restart"); 
-  const soap = this;
-
-  soap.classList.remove("falling");
-  soap.offsetWidth;
-  soap.classList.add("falling");
-
-  soap.classList.remove("position1","position2","position3","position4","position5");
-  const p = Math.ceil(Math.random() * 5);
-  soap.classList.add(`position${p}`);
-
-  soap.classList.remove("speed1", "speed2", "speed3");
-  const s = Math.ceil(Math.random() * 3);
-  soap.classList.add(`speed${s}`);
 }
 
 function clickBalls() {
@@ -249,30 +236,36 @@ function ballsGone() {
 
   document.querySelector("#hairyballs_container").classList.remove("paused");
 
-  document.querySelector("#hairyballs_container").classList.remove("falling");
-  document.querySelector("#hairyballs_container").offsetWidth;
-  document.querySelector("#hairyballs_container").classList.add("falling");
+  if (isGameRunning) {
+    document.querySelector("#hairyballs_container").classList.remove("falling");
+    document.querySelector("#hairyballs_container").offsetWidth;
+    document.querySelector("#hairyballs_container").classList.add("falling");
 
-  document.querySelector("#hairyballs_container").addEventListener("click", clickBalls);
+    document.querySelector("#hairyballs_container").classList.remove("position1","position2","position3","position4","position5",);
+    let position = Math.floor(Math.random() * 5) + 1;
+    document.querySelector("#hairyballs_container").classList.add("position" + position);
+
+    document.querySelector("#hairyballs_container").addEventListener("click", clickBalls);
+  }
 }
 
 
 function incrementPoints() {
   console.log("Give point");
   points++;
-  console.log("Current " + points + " points");
+  console.log("Current " + points + "points");
   // if (points === 2) {
   //   levelComplete();
   // }
   displayPoints();
 }
 
-function decrementPoints() {
-  console.log("Lose point");
-  points--;
-  console.log("Current " + points + " points");
-  displayPoints();
-}
+// function decrementPoints() {
+//   console.log("Lose point");
+//   points--;
+//   console.log("Current " + points + "points");
+//   displayPoints();
+// }
 
 function displayPoints() {
   console.log("Show points");
@@ -282,12 +275,13 @@ function displayPoints() {
 function decrementLives() {
   console.log("Lose health");
 
+  showDecrementedLives();
+  lives--;
+
   if (lives === 0) {
   gameOver();
   }
 
-  showDecrementedLives();
-  lives--;
 }
 
 function incrementLives() {
@@ -310,7 +304,7 @@ function gameOver() {
   console.log("Game Over");
   document.querySelector("#game_over").classList.remove("hidden");
   stopGame();
-  document.querySelector("#sound_game_over").play();
+  // document.querySelector("#sound_epicfail").play();
   document.querySelector("#game_over_gunk").textContent = points;
 }
 
@@ -318,7 +312,7 @@ function levelComplete() {
   console.log("Level Complete");
   document.querySelector("#level_complete").classList.remove("hidden");
   stopGame();
-  // document.querySelector("#sound_tada").play();
+  // document.querySelector("#sound_epicwin").play();
   document.querySelector("#level_complete_gunk").textContent = points;
 }
 
@@ -330,7 +324,7 @@ function startTimer() {
 function timeIsUp() {
   console.log("Time's up!");
 
-  if (points >= 20) {
+  if (points >= 15) {
   levelComplete();
   } else {
   gameOver();
@@ -347,10 +341,9 @@ function stopGame() {
   document.querySelector("#chadsoap_container").classList.remove("falling");
   document.querySelector("#hairyballs_container").classList.remove("falling");
 
-
-  document.querySelector("#gunk1_container").removeEventListener("click", clickGunk);
-  document.querySelector("#gunk2_container").removeEventListener("click", clickGunk);
-  document.querySelector("#gunk3_container").removeEventListener("click", clickGunk);
+  document.querySelector("#gamergunk1_container").removeEventListener("click", clickGunk);
+  document.querySelector("#gamergunk2_container").removeEventListener("click", clickGunk);
+  document.querySelector("#gamergunk3_container").removeEventListener("click", clickGunk);
   document.querySelector("#stinkypants_container").removeEventListener("click", clickPants);
   document.querySelector("#chadsoap_container").removeEventListener("click", clickSoap);
   document.querySelector("#hairyballs_container").removeEventListener("click", clickBalls);
