@@ -294,7 +294,7 @@ p {
 button {
   width: 25%;
   position: relative;
-  top: 20vw;
+  top: 0vw;
   left: 36vw;
   margin: auto;
   border-radius: 10px;
@@ -357,7 +357,7 @@ button2 {
 
 .shrink {
   animation-name: shrink_kf;
-  animation-duration: 25s;
+  animation-duration: 15s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   animation-fill-mode: forwards;

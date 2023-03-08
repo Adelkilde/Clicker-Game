@@ -52,7 +52,7 @@ function start() {
   resetPoints()
   showGameScreen()
 
-  // document.querySelector("#sound_epicgamer").play
+  document.querySelector("#farting_around").play();
 
   startAllAnimations();
   startTimer();
@@ -97,6 +97,9 @@ function clickGunk() {
   console.log("Click gunk");
   const gunk = this;
 
+  document.querySelector("#sound_gunk").currentTime = 0;
+  document.querySelector("#sound_gunk").play();
+
   gunk.removeEventListener("click", clickGunk);
   gunk.classList.add("paused");
   gunk.querySelector("img").classList.add("zoom_out");
@@ -140,6 +143,9 @@ function gunkRestart() {
 function clickPants() {
   console.log("Click pants");
   const pants = this;
+
+  document.querySelector("#sound_pants").currentTime = 0;
+  document.querySelector("#sound_pants").play();
 
   pants.removeEventListener("click", clickPants);
   pants.classList.add("paused");
@@ -190,8 +196,8 @@ function clickSoap() {
   document.querySelector("#chadsoap_sprite").classList.add("zoom_in");
   document.querySelector("#chadsoap_container").addEventListener("animationend", soapGone);
 
-  // document.querySelector("#sound_bomb").currentTime = 0;
-  // document.querySelector("#sound_bomb").play();
+  document.querySelector("#sound_soap").currentTime = 0;
+  document.querySelector("#sound_soap").play();
 
   decrementLives();
 }
@@ -217,13 +223,14 @@ function soapGone() {
 
 function clickBalls() {
   console.log("Click balls");
+
+  document.querySelector("#sound_balls").currentTime = 0;
+  document.querySelector("#sound_balls").play();
+  
   document.querySelector("#hairyballs_container").removeEventListener("click", clickBalls);
   document.querySelector("#hairyballs_container").classList.add("paused");
   document.querySelector("#hairyballs_sprite").classList.add("glow");
   document.querySelector("#hairyballs_container").addEventListener("animationend", ballsGone);
-
-  // document.querySelector("#sound_success").currentTime = 0;  
-  // document.querySelector("#sound_success").play();
 
     if (lives < 3) {
     incrementLives();
@@ -254,18 +261,8 @@ function incrementPoints() {
   console.log("Give point");
   points++;
   console.log("Current " + points + "points");
-  // if (points === 2) {
-  //   levelComplete();
-  // }
   displayPoints();
 }
-
-// function decrementPoints() {
-//   console.log("Lose point");
-//   points--;
-//   console.log("Current " + points + "points");
-//   displayPoints();
-// }
 
 function displayPoints() {
   console.log("Show points");
@@ -304,7 +301,7 @@ function gameOver() {
   console.log("Game Over");
   document.querySelector("#game_over").classList.remove("hidden");
   stopGame();
-  // document.querySelector("#sound_epicfail").play();
+  document.querySelector("#sound_epicfail").play();
   document.querySelector("#game_over_gunk").textContent = points;
 }
 
@@ -312,7 +309,7 @@ function levelComplete() {
   console.log("Level Complete");
   document.querySelector("#level_complete").classList.remove("hidden");
   stopGame();
-  // document.querySelector("#sound_epicwin").play();
+  document.querySelector("#sound_epicwin").play();
   document.querySelector("#level_complete_gunk").textContent = points;
 }
 
@@ -348,8 +345,8 @@ function stopGame() {
   document.querySelector("#chadsoap_container").removeEventListener("click", clickSoap);
   document.querySelector("#hairyballs_container").removeEventListener("click", clickBalls);
 
-  // document.querySelector("#sound_dreams").pause();
-  // document.querySelector("#sound_dreams").currentTime = 0;
+  document.querySelector("#farting_around").pause();
+  document.querySelector("#farting_around").currentTime = 0;
 
   document.querySelector("#time_sprite").classList.remove("shrink");
 }
